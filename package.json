@@ -6,7 +6,7 @@
     "tree-sitter": "tree-sitter",
     "generate": "tree-sitter generate",
     "build-wasm": "tree-sitter build-wasm",
-    "playground": "yarn generate && yarn build-wasm && yarn playground"
+    "playground": "yarn generate && yarn build-wasm && yarn tree-sitter playground"
   },
   "devDependencies": {
     "nan": "^2.17.0"
