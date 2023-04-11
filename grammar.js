@@ -56,6 +56,7 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      $.match_expr,
       $.do_expr,
       $.ask_expr,
       $.open_expr,
@@ -81,6 +82,33 @@ module.exports = grammar({
       'ask',
       field('name', $._name),
       '=',
+      field('value', $._expression),
+    ),
+
+    match_expr: $ => prec.left(seq(
+      'match',
+      field('scrutinee', $._name),
+      field('name', $._name),
+      optional(seq(
+        '=',
+        field('value', $._expression),
+      )),
+      field('branches', $.branches),
+    )),
+
+    branches: $ => prec.left(seq(
+      '{',
+      optional(seq(
+        $.case,
+        repeat(seq($._line_break, $.case)),
+        optional($._line_break),
+      )),
+      '}'
+    )),
+
+    case: $ => seq(
+      field('name', $._name),
+      '=>',
       field('value', $._expression),
     ),
 
