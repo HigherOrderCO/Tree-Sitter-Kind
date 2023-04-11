@@ -1,7 +1,11 @@
 module.exports = grammar({
   name: 'kind',
   rules: {
-    source_file: $ => $._declaration,
+    source_file: $ => optional(seq(
+      $._declaration,
+      repeat(seq($._line_break, $._declaration)),
+      optional($._line_break),
+    )),
 
     _declaration: $ => choice(
       prec(6, $.attribute),

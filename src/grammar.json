@@ -2,8 +2,49 @@
   "name": "kind",
   "rules": {
     "source_file": {
-      "type": "SYMBOL",
-      "name": "_declaration"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_declaration"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_line_break"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_declaration"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_line_break"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BLANK"
+        }
+      ]
     },
     "_declaration": {
       "type": "CHOICE",
