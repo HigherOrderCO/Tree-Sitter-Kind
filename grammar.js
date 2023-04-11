@@ -134,10 +134,10 @@ module.exports = grammar({
     hex: $ => seq('0', choice('X', 'x'), $.hex_number),
     binary: $ => seq('0', choice('B', 'b'), $.binary_number),
 
-    dot_access: $ => seq('.', $.any_id),
-    bar_access: $ => seq('/', $.any_id),
+    dot_access: $ => seq('.', $._any_id),
+    bar_access: $ => seq('/', $._any_id),
 
-    any_id: $ => choice($.symbol_id, $.upper_id, $.lower_id),
+    _any_id: $ => choice($.symbol_id, $.upper_id, $.lower_id),
 
     // LEXER
     _line_break: $ => /(\n|\r\n|;)+/,
