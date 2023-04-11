@@ -4,10 +4,22 @@ module.exports = grammar({
     source_file: $ => $._declaration,
 
     _declaration: $ => choice(
+      prec(5, $.record_declaration),
       prec(4, $.type_declaration),
       prec(3, $.use_declaration),
       prec(2, $.rule_declaration),
       prec(1, $.val_declaration),
+    ),
+
+    record_declaration: $ => seq(
+      'record',
+      field('name', $._name),
+      field('parameters', repeat($.parameter)),
+      optional(seq(
+        '~',
+        field('indices', repeat($.parameter)),
+      )),
+      optional(field('members', $.record_members)),
     ),
 
     type_declaration: $ => seq(
@@ -21,6 +33,16 @@ module.exports = grammar({
       optional(field('members', $.type_members)),
     ),
 
+    record_members: $ => seq(
+      '{',
+      optional(seq(
+        $.field_signature,
+        repeat(seq($._line_break, $.field_signature)),
+        optional($._line_break),
+      )),
+      '}',
+    ),
+
     type_members: $ => seq(
       '{',
       optional(seq(
@@ -29,6 +51,14 @@ module.exports = grammar({
         optional($._line_break),
       )),
       '}',
+    ),
+
+    field_signature: $ => seq(
+      field('name', $._name),
+      optional(seq(
+        ':',
+        field('return_type', $._expression),
+      )),
     ),
 
     member_signature: $ => seq(

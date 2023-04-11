@@ -432,6 +432,64 @@
     "fields": {}
   },
   {
+    "type": "field_signature",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ask_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "let_expr",
+            "named": true
+          },
+          {
+            "type": "match_expr",
+            "named": true
+          },
+          {
+            "type": "open_expr",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "group",
     "named": true,
     "fields": {},
@@ -1139,6 +1197,71 @@
     }
   },
   {
+    "type": "record_declaration",
+    "named": true,
+    "fields": {
+      "indices": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter",
+            "named": true
+          }
+        ]
+      },
+      "members": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "record_members",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "record_members",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "field_signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "return_expr",
     "named": true,
     "fields": {
@@ -1258,6 +1381,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "record_declaration",
+          "named": true
+        },
         {
           "type": "rule_declaration",
           "named": true
@@ -1751,6 +1878,10 @@
   },
   {
     "type": "open",
+    "named": false
+  },
+  {
+    "type": "record",
     "named": false
   },
   {
