@@ -270,6 +270,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "do_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ask_expr"
         },
         {

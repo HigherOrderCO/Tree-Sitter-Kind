@@ -56,7 +56,7 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      // $.do_expr,
+      $.do_expr,
       $.ask_expr,
       $.open_expr,
       $.return_expr,

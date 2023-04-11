@@ -30,6 +30,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -235,6 +239,36 @@
     }
   },
   {
+    "type": "do_expr",
+    "named": true,
+    "fields": {
+      "scrutinee": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "statements": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "statements",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "dot_access",
     "named": true,
     "fields": {},
@@ -276,6 +310,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "do_expr",
           "named": true
         },
         {
@@ -375,6 +413,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -405,6 +447,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -432,6 +478,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
             "named": true
           },
           {
@@ -485,6 +535,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -512,6 +566,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
             "named": true
           },
           {
@@ -626,6 +684,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -686,6 +748,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -734,6 +800,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
             "named": true
           },
           {
@@ -797,6 +867,10 @@
             "named": true
           },
           {
+            "type": "do_expr",
+            "named": true
+          },
+          {
             "type": "if_expr",
             "named": true
           },
@@ -853,6 +927,10 @@
         },
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "do_expr",
           "named": true
         },
         {
@@ -1010,6 +1088,10 @@
           },
           {
             "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
             "named": true
           },
           {
