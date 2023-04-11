@@ -829,6 +829,10 @@
           "named": true
         },
         {
+          "type": "use_declaration",
+          "named": true
+        },
+        {
           "type": "val_declaration",
           "named": true
         }
@@ -932,6 +936,40 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "use_declaration",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1113,6 +1151,10 @@
     "named": false
   },
   {
+    "type": "as",
+    "named": false
+  },
+  {
     "type": "ask",
     "named": false
   },
@@ -1195,6 +1237,10 @@
   {
     "type": "upper_id",
     "named": true
+  },
+  {
+    "type": "use",
+    "named": false
   },
   {
     "type": "x",

@@ -10,6 +10,14 @@
       "members": [
         {
           "type": "PREC",
+          "value": 3,
+          "content": {
+            "type": "SYMBOL",
+            "name": "use_declaration"
+          }
+        },
+        {
+          "type": "PREC",
           "value": 2,
           "content": {
             "type": "SYMBOL",
@@ -22,6 +30,35 @@
           "content": {
             "type": "SYMBOL",
             "name": "val_declaration"
+          }
+        }
+      ]
+    },
+    "use_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "use"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "FIELD",
+          "name": "alias",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_name"
           }
         }
       ]

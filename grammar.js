@@ -4,8 +4,16 @@ module.exports = grammar({
     source_file: $ => $._declaration,
 
     _declaration: $ => choice(
+      prec(3, $.use_declaration),
       prec(2, $.rule_declaration),
       prec(1, $.val_declaration),
+    ),
+
+    use_declaration: $ => seq(
+      'use',
+      field('path', $._name),
+      'as',
+      field('alias', $._name),
     ),
 
     val_declaration: $ => seq(
