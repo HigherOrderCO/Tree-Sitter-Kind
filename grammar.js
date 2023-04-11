@@ -27,6 +27,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       // $.do_expr,
+      $.ask_expr,
       $.open_expr,
       $.return_expr,
       $.let_expr,
@@ -45,6 +46,13 @@ module.exports = grammar({
       )),
       '}'
     )),
+
+    ask_expr: $ => seq(
+      'ask',
+      field('name', $._name),
+      '=',
+      field('value', $._expression),
+    ),
 
     do_expr: $ => seq(
       'do',

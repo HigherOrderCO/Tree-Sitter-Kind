@@ -117,6 +117,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "ask_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "open_expr"
         },
         {
@@ -215,6 +219,35 @@
           }
         ]
       }
+    },
+    "ask_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ask"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_name"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        }
+      ]
     },
     "do_expr": {
       "type": "SEQ",
