@@ -34,14 +34,15 @@ module.exports = grammar({
 
     return_expr: $ => seq('return', field('value', $._expression)),
 
-    statements: $ => seq(
+    statements: $ => prec.left(seq(
       '{',
       optional(seq(
         $._expression,
-        optional(repeat(seq($._line_break, $._expression))),
+        repeat(seq($._line_break, $._expression)),
+        optional($._line_break),
       )),
       '}'
-    ),
+    )),
 
     do_expr: $ => seq(
       'do',
