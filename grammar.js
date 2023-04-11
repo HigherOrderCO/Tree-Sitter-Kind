@@ -1,10 +1,11 @@
 module.exports = grammar({
   name: 'kind',
   rules: {
-    source_file: $ => $.val_declaration,
+    source_file: $ => $._declaration,
 
     _declaration: $ => choice(
-      $.val_declaration,
+      prec(2, $.rule_declaration),
+      prec(1, $.val_declaration),
     ),
 
     val_declaration: $ => seq(
@@ -15,6 +16,27 @@ module.exports = grammar({
         field('return_type', $._expression),
       )),
       optional(field('value', $.statements)),
+    ),
+
+    rule_declaration: $ => seq(
+      field('name', $._name),
+      field('patterns', repeat($.pattern)),
+      '=',
+      field('value', $._expression),
+    ),
+
+    pattern: $ => choice(
+      alias($.constructor_identifier, 'name_constructor_pattern'),
+      alias($.identifier, 'identifier_pattern'),
+      alias($.symbol_id, 'symbol_pattern'),
+      $.constructor_pattern,
+    ),
+
+    constructor_pattern: $ => seq(
+      '(',
+      field('name', $.constructor_identifier),
+      field('patterns', repeat($.pattern)),
+      ')',
     ),
 
     parameter: $ => seq(

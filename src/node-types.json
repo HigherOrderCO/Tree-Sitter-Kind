@@ -1,28 +1,5 @@
 [
   {
-    "type": "any_id",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "lower_id",
-          "named": true
-        },
-        {
-          "type": "symbol_id",
-          "named": true
-        },
-        {
-          "type": "upper_id",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "ask_expr",
     "named": true,
     "fields": {
@@ -81,7 +58,15 @@
       "required": true,
       "types": [
         {
-          "type": "any_id",
+          "type": "lower_id",
+          "named": true
+        },
+        {
+          "type": "symbol_id",
+          "named": true
+        },
+        {
+          "type": "upper_id",
           "named": true
         }
       ]
@@ -224,6 +209,32 @@
     }
   },
   {
+    "type": "constructor_pattern",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          }
+        ]
+      },
+      "patterns": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "dot_access",
     "named": true,
     "fields": {},
@@ -232,7 +243,15 @@
       "required": true,
       "types": [
         {
-          "type": "any_id",
+          "type": "lower_id",
+          "named": true
+        },
+        {
+          "type": "symbol_id",
+          "named": true
+        },
+        {
+          "type": "upper_id",
           "named": true
         }
       ]
@@ -296,6 +315,29 @@
   {
     "type": "identifier",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "bar_access",
+          "named": true
+        },
+        {
+          "type": "dot_access",
+          "named": true
+        },
+        {
+          "type": "lower_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifier_pattern",
+    "named": false,
     "fields": {},
     "children": {
       "multiple": true,
@@ -520,6 +562,29 @@
     }
   },
   {
+    "type": "name_constructor_pattern",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "bar_access",
+          "named": true
+        },
+        {
+          "type": "dot_access",
+          "named": true
+        },
+        {
+          "type": "upper_id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "octal",
     "named": true,
     "fields": {},
@@ -641,9 +706,84 @@
     }
   },
   {
+    "type": "pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "constructor_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "return_expr",
     "named": true,
     "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ask_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "let_expr",
+            "named": true
+          },
+          {
+            "type": "open_expr",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "rule_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "patterns": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "pattern",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": true,
@@ -684,6 +824,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "rule_declaration",
+          "named": true
+        },
         {
           "type": "val_declaration",
           "named": true
@@ -729,6 +873,11 @@
   {
     "type": "symbol_id",
     "named": true,
+    "fields": {}
+  },
+  {
+    "type": "symbol_pattern",
+    "named": false,
     "fields": {}
   },
   {
