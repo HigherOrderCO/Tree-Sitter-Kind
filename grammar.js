@@ -1,7 +1,26 @@
 module.exports = grammar({
   name: 'kind',
   rules: {
-    source_file: $ => $._expression,
+    source_file: $ => $.val_declaration,
+
+    _declaration: $ => choice(
+      $.val_declaration,
+    ),
+
+    val_declaration: $ => seq(
+      field('name', $._name),
+      field('parameters', repeat($.parameter)),
+      ':',
+      field('return_type', $._expression)
+    ),
+
+    parameter: $ => seq(
+      '(',
+      field('name', $._name),
+      ':',
+      field('type', $._expression),
+      ')',
+    ),
 
     _expression: $ => choice(
       // $.open_expr,

@@ -440,6 +440,48 @@
     }
   },
   {
+    "type": "parameter",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "let_expr",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "return_expr",
     "named": true,
     "fields": {
@@ -476,19 +518,7 @@
       "required": true,
       "types": [
         {
-          "type": "call",
-          "named": true
-        },
-        {
-          "type": "if_expr",
-          "named": true
-        },
-        {
-          "type": "let_expr",
-          "named": true
-        },
-        {
-          "type": "return_expr",
+          "type": "val_declaration",
           "named": true
         }
       ]
@@ -581,6 +611,58 @@
     }
   },
   {
+    "type": "val_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "if_expr",
+            "named": true
+          },
+          {
+            "type": "let_expr",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": " ",
     "named": false
   },
@@ -638,6 +720,10 @@
   },
   {
     "type": "0",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
