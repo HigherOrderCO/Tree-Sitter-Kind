@@ -10,8 +10,10 @@ module.exports = grammar({
     val_declaration: $ => seq(
       field('name', $._name),
       field('parameters', repeat($.parameter)),
-      ':',
-      field('return_type', $._expression),
+      optional(seq(
+        ':',
+        field('return_type', $._expression),
+      )),
       optional(field('value', $.statements)),
     ),
 
