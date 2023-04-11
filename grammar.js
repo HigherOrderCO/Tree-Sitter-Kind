@@ -4,9 +4,40 @@ module.exports = grammar({
     source_file: $ => $._declaration,
 
     _declaration: $ => choice(
+      prec(4, $.type_declaration),
       prec(3, $.use_declaration),
       prec(2, $.rule_declaration),
       prec(1, $.val_declaration),
+    ),
+
+    type_declaration: $ => seq(
+      'type',
+      field('name', $._name),
+      field('parameters', repeat($.parameter)),
+      optional(seq(
+        '~',
+        field('indices', repeat($.parameter)),
+      )),
+      optional(field('members', $.type_members)),
+    ),
+
+    type_members: $ => seq(
+      '{',
+      optional(seq(
+        $.member_signature,
+        repeat(seq($._line_break, $.member_signature)),
+        optional($._line_break),
+      )),
+      '}',
+    ),
+
+    member_signature: $ => seq(
+      field('name', $._name),
+      field('parameters', repeat($.parameter)),
+      optional(seq(
+        ':',
+        field('return_type', $._expression),
+      )),
     ),
 
     use_declaration: $ => seq(
@@ -40,18 +71,37 @@ module.exports = grammar({
       $.constructor_pattern,
     ),
 
-    constructor_pattern: $ => seq(
+    constructor_pattern: $ => prec(3, seq(
       '(',
       field('name', $.constructor_identifier),
       field('patterns', repeat($.pattern)),
       ')',
-    ),
+    )),
+
+    parameter_modifier: $ => prec(3, choice('+', '-', '+-', '-+')),
 
     parameter: $ => seq(
+      field('modifier', optional($.parameter_modifier)),
+      choice($.implicit_parameter, $.explicit_parameter),
+    ),
+
+    implicit_parameter: $ => prec(2, seq(
+      '<',
+      field('name', $._name),
+      optional(seq(
+        ':',
+        field('type', $._expression),
+      )),
+      '>',
+    )),
+
+    explicit_parameter: $ => seq(
       '(',
       field('name', $._name),
-      ':',
-      field('type', $._expression),
+      optional(seq(
+        ':',
+        field('type', $._expression),
+      )),
       ')',
     ),
 
