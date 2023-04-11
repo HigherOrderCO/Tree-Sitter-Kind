@@ -4,11 +4,29 @@ module.exports = grammar({
     source_file: $ => $._declaration,
 
     _declaration: $ => choice(
+      prec(6, $.attribute),
       prec(5, $.record_declaration),
       prec(4, $.type_declaration),
       prec(3, $.use_declaration),
       prec(2, $.rule_declaration),
       prec(1, $.val_declaration),
+    ),
+
+    attribute: $ => seq(
+      field('name', $.attribute_id),
+      optional(field('value', choice($.attribute_assign, $.attribute_apply))),
+    ),
+
+    attribute_assign: $ => seq('=', field('value', $._name)),
+
+    attribute_apply: $ => seq(
+      '[',
+      optional(seq(
+        $._name,
+        repeat(seq(',', $._name)),
+        optional(','),
+      )),
+      ']',
     ),
 
     record_declaration: $ => seq(
@@ -292,6 +310,7 @@ module.exports = grammar({
     char: $ => /'[^'\\]'/,
     string: $ => /"([^"\\\n\r]|\\[^\n\r])*"/,
 
+    attribute_id: $ => /#[a-zA-Z][a-zA-Z\d_$]*/,
     upper_id: $ => /[A-Z][a-zA-Z\d_$]*/,
     lower_id: $ => /[a-z][a-zA-Z\d_$]*/,
   },
