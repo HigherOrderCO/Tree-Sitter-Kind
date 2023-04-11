@@ -2,4 +2,3 @@ target/
 .idea
 .vscode
 node_modules/
-*.wasm
