@@ -11,7 +11,8 @@ module.exports = grammar({
       field('name', $._name),
       field('parameters', repeat($.parameter)),
       ':',
-      field('return_type', $._expression)
+      field('return_type', $._expression),
+      optional(field('value', $.statements)),
     ),
 
     parameter: $ => seq(
@@ -37,7 +38,7 @@ module.exports = grammar({
       '{',
       optional(seq(
         $._expression,
-        repeat(seq($._line_break, $._expression)),
+        optional(repeat(seq($._line_break, $._expression))),
       )),
       '}'
     ),
@@ -129,7 +130,7 @@ module.exports = grammar({
     any_id: $ => choice($.symbol_id, $.upper_id, $.lower_id),
 
     // LEXER
-    _line_break: $ => /(\n|\r\n|;)*/,
+    _line_break: $ => /(\n|\r\n|;)+/,
     _ws: $ => /\s+/,
 
     symbol_id: $ => choice('$', '+', '-', '*', '/', '%', '^', '&', '|', '&&', '||', '!', '~', '==', '!=', '<', '>', '<=', '>=', '<<', '>>'),
