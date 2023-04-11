@@ -69,6 +69,10 @@
             "named": true
           },
           {
+            "type": "f60_literal",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -77,7 +81,7 @@
             "named": true
           },
           {
-            "type": "number_literal",
+            "type": "n_literal",
             "named": true
           },
           {
@@ -86,6 +90,14 @@
           },
           {
             "type": "symbol_id",
+            "named": true
+          },
+          {
+            "type": "u120_literal",
+            "named": true
+          },
+          {
+            "type": "u60_literal",
             "named": true
           }
         ]
@@ -103,6 +115,10 @@
             "named": true
           },
           {
+            "type": "f60_literal",
+            "named": true
+          },
+          {
             "type": "group",
             "named": true
           },
@@ -111,7 +127,7 @@
             "named": true
           },
           {
-            "type": "number_literal",
+            "type": "n_literal",
             "named": true
           },
           {
@@ -120,6 +136,14 @@
           },
           {
             "type": "symbol_id",
+            "named": true
+          },
+          {
+            "type": "u120_literal",
+            "named": true
+          },
+          {
+            "type": "u60_literal",
             "named": true
           }
         ]
@@ -392,33 +416,6 @@
         },
         {
           "type": "octal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "number_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "f60_literal",
-          "named": true
-        },
-        {
-          "type": "n_literal",
-          "named": true
-        },
-        {
-          "type": "u120_literal",
-          "named": true
-        },
-        {
-          "type": "u60_literal",
           "named": true
         }
       ]

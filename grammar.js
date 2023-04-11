@@ -102,7 +102,7 @@ module.exports = grammar({
       $.symbol_id,
       $.identifier,
       $.constructor_identifier,
-      $.number_literal,
+      $._number_literal,
     ),
 
     identifier: $ => prec.left(seq(
@@ -114,7 +114,7 @@ module.exports = grammar({
       repeat(choice($.dot_access, $.bar_access)),
     )),
 
-    number_literal: $ => choice($.f60_literal, $.u60_literal, $.u120_literal, $.n_literal),
+    _number_literal: $ => choice($.f60_literal, $.u60_literal, $.u120_literal, $.n_literal),
 
     _integer_literal: $ => choice($.decimal_number, $.octal, $.hex, $.binary),
 

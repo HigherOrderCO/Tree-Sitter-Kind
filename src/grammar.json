@@ -493,7 +493,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "number_literal"
+          "name": "_number_literal"
         }
       ]
     },
@@ -555,7 +555,7 @@
         ]
       }
     },
-    "number_literal": {
+    "_number_literal": {
       "type": "CHOICE",
       "members": [
         {
