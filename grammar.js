@@ -26,8 +26,8 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      // $.open_expr,
       // $.do_expr,
+      $.open_expr,
       $.return_expr,
       $.let_expr,
       $.if_expr,
@@ -55,7 +55,6 @@ module.exports = grammar({
     open_expr: $ => prec.left(seq(
       'open',
       field('name', $.constructor_identifier),
-      ' ',
       field('value', $.identifier),
       optional(seq(
         $._line_break,

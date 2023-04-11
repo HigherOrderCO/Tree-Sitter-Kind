@@ -117,6 +117,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "open_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "return_expr"
         },
         {
@@ -254,10 +258,6 @@
               "type": "SYMBOL",
               "name": "constructor_identifier"
             }
-          },
-          {
-            "type": "STRING",
-            "value": " "
           },
           {
             "type": "FIELD",
