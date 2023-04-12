@@ -61,11 +61,7 @@ module.exports = grammar({
 
     record_members: $ => seq(
       '{',
-      optional(seq(
-        $.field_signature,
-        repeat(seq($._line_break, $.field_signature)),
-        optional($._line_break),
-      )),
+      optional(repeat($.field_signature)),
       '}',
     ),
 
@@ -81,6 +77,7 @@ module.exports = grammar({
         ':',
         field('return_type', $._expression),
       )),
+      token.immediate(/[\n\r]/),
     ),
 
     member_signature: $ => seq(
@@ -89,8 +86,8 @@ module.exports = grammar({
       optional(seq(
         ':',
         field('return_type', $._expression),
-        token.immediate(/[\n\r]/)
       )),
+      token.immediate(/[\n\r]/),
     ),
 
     use_declaration: $ => seq(
