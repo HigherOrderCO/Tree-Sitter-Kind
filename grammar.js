@@ -165,10 +165,36 @@ module.exports = grammar({
       $.return_expr,
       $.let_expr,
       $.if_expr,
-      $.call,
+      prec(4, $.ann_expr),
+      prec(3, $.lam_type),
+      prec(2, $.lam_expr),
+      prec(1, $.call),
     ),
 
-    return_expr: $ => seq('return', field('value', $._expression)),
+    ann_expr: $ => prec.left(seq(
+      field('value', $._expression),
+      '::',
+      field('type', $._expression),
+    )),
+
+    lam_type: $ => prec.left(seq(
+      field('parameter', $._expression),
+      '->',
+      field('return_type', $._expression),
+    )),
+
+    lam_expr: $ => prec.left(seq(
+      field('parameter', $.lam_parameter),
+      '=>',
+      field('return_type', $._expression),
+    )),
+
+    lam_parameter: $ => choice(
+      $._name,
+      $.explicit_parameter,
+    ),
+
+    return_expr: $ => prec.left(seq('return', field('value', $._expression))),
 
     statements: $ => prec.left(seq(
       '{',
@@ -180,12 +206,12 @@ module.exports = grammar({
       '}'
     )),
 
-    ask_expr: $ => seq(
+    ask_expr: $ => prec.left(seq(
       'ask',
       field('name', $._name),
       '=',
       field('value', $._expression),
-    ),
+    )),
 
     match_expr: $ => prec.left(seq(
       'match',
@@ -260,7 +286,7 @@ module.exports = grammar({
 
     group: $ => seq('(', $._expression, ')'),
 
-    _name: $ => choice($.identifier, $.constructor_identifier),
+    _name: $ => prec(2, choice($.identifier, $.constructor_identifier)),
 
     _primary: $ => choice(
       $.char,
