@@ -1,7 +1,9 @@
 module.exports = grammar({
   name: 'kind',
   rules: {
-    source_file: $ => optional(seq(
+    source_file: $ => seq(optional($.hash_bang_line), $._declaration),
+
+    _declarations: $ => optional(seq(
       $._declaration,
       repeat(seq($._line_break, $._declaration)),
       optional($._line_break),
@@ -343,5 +345,7 @@ module.exports = grammar({
     attribute_id: $ => /#[a-zA-Z][a-zA-Z\d_$]*/,
     upper_id: $ => /[A-Z][a-zA-Z\d_$]*/,
     lower_id: $ => /[a-z][a-zA-Z\d_$]*/,
+
+    hash_bang_line: $ => /#!.*/,
   },
 });

@@ -2,6 +2,27 @@
   "name": "kind",
   "rules": {
     "source_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "hash_bang_line"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_declaration"
+        }
+      ]
+    },
+    "_declarations": {
       "type": "CHOICE",
       "members": [
         {
@@ -2088,6 +2109,10 @@
     "lower_id": {
       "type": "PATTERN",
       "value": "[a-z][a-zA-Z\\d_$]*"
+    },
+    "hash_bang_line": {
+      "type": "PATTERN",
+      "value": "#!.*"
     }
   },
   "extras": [

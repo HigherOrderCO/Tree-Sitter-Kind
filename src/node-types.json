@@ -1941,10 +1941,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "hash_bang_line",
           "named": true
         },
         {
@@ -2457,6 +2461,10 @@
   {
     "type": "f60",
     "named": false
+  },
+  {
+    "type": "hash_bang_line",
+    "named": true
   },
   {
     "type": "hex_number",
