@@ -545,6 +545,11 @@
     }
   },
   {
+    "type": "doc_string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "dot_access",
     "named": true,
     "fields": {},
@@ -1368,6 +1373,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "line_comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "match_expr",

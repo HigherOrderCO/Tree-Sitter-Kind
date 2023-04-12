@@ -1,5 +1,10 @@
 module.exports = grammar({
   name: 'kind',
+  extras: $ => [
+    $.doc_string,
+    $.line_comment,
+    /\s+/,
+  ],
   rules: {
     source_file: $ => seq(optional($.hash_bang_line), $._declaration),
 
@@ -347,5 +352,8 @@ module.exports = grammar({
     lower_id: $ => /[a-z][a-zA-Z\d_$]*/,
 
     hash_bang_line: $ => /#!.*/,
+
+    doc_string: $ => prec(2, token(seq('//!', /.*/))),
+    line_comment: $ => prec(1, token(seq('//', /.*/))),
   },
 });
