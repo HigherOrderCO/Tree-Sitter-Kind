@@ -78,7 +78,7 @@ module.exports = grammar({
         ':',
         field('return_type', $._expression),
       )),
-      token.immediate(/[\n\r]/),
+      $._decl_line_break,
     ),
 
     member_signature: $ => seq(
@@ -89,7 +89,7 @@ module.exports = grammar({
         ':',
         field('return_type', $._expression),
       )),
-      token.immediate(/[\n\r]/),
+      $._decl_line_break,
     ),
 
     use_declaration: $ => seq(
@@ -329,6 +329,7 @@ module.exports = grammar({
 
     // LEXER
     _line_break: $ => /(\n|\r\n|;)+/,
+    _decl_line_break: $ => token.immediate(/\s*(\n|\r\n|;)+/),
     _ws: $ => /\s+/,
 
     symbol_id: $ => choice('$', '+', '-', '*', '/', '%', '^', '&', '|', '&&', '||', '!', '~', '==', '!=', '<', '>', '<=', '>=', '<<', '>>'),

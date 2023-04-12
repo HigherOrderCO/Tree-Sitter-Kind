@@ -444,11 +444,8 @@
           ]
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "[\\n\\r]"
-          }
+          "type": "SYMBOL",
+          "name": "_decl_line_break"
         }
       ]
     },
@@ -507,11 +504,8 @@
           ]
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "[\\n\\r]"
-          }
+          "type": "SYMBOL",
+          "name": "_decl_line_break"
         }
       ]
     },
@@ -1951,6 +1945,13 @@
     "_line_break": {
       "type": "PATTERN",
       "value": "(\\n|\\r\\n|;)+"
+    },
+    "_decl_line_break": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\s*(\\n|\\r\\n|;)+"
+      }
     },
     "_ws": {
       "type": "PATTERN",
