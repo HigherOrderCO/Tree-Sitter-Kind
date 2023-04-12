@@ -72,6 +72,7 @@ module.exports = grammar({
     ),
 
     field_signature: $ => seq(
+      repeat($.attribute),
       field('name', $._name),
       optional(seq(
         ':',
@@ -81,6 +82,7 @@ module.exports = grammar({
     ),
 
     member_signature: $ => seq(
+      repeat($.attribute),
       field('name', $._name),
       field('parameters', repeat($.parameter)),
       optional(seq(
