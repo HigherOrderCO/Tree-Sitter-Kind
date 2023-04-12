@@ -330,11 +330,11 @@
             "named": true
           },
           {
-            "type": "string",
+            "type": "op",
             "named": true
           },
           {
-            "type": "symbol_id",
+            "type": "string",
             "named": true
           },
           {
@@ -376,11 +376,11 @@
             "named": true
           },
           {
-            "type": "string",
+            "type": "op",
             "named": true
           },
           {
-            "type": "symbol_id",
+            "type": "string",
             "named": true
           },
           {
@@ -1613,6 +1613,65 @@
       "types": [
         {
           "type": "octal_number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "op",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ann_expr",
+          "named": true
+        },
+        {
+          "type": "ask_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "do_expr",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "lam_expr",
+          "named": true
+        },
+        {
+          "type": "lam_type",
+          "named": true
+        },
+        {
+          "type": "let_expr",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "open_expr",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "symbol_id",
           "named": true
         }
       ]

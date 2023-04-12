@@ -142,13 +142,13 @@ module.exports = grammar({
     ),
 
     implicit_parameter: $ => prec(2, seq(
-      '<',
+      prec(5, '<'),
       field('name', $._name),
       optional(seq(
         ':',
         field('type', $._expression),
       )),
-      '>',
+      prec(5, '>'),
     )),
 
     explicit_parameter: $ => seq(
@@ -288,19 +288,21 @@ module.exports = grammar({
       field('arguments', repeat($._primary)),
     )),
 
-    group: $ => seq('(', $._expression, ')'),
+    group: $ => prec(1, seq('(', $._expression, ')')),
 
     _name: $ => prec(2, choice($.identifier, $.constructor_identifier)),
 
     _primary: $ => choice(
       $.char,
       $.string,
+      $.op,
       $.group,
-      $.symbol_id,
       $.identifier,
       $.constructor_identifier,
       $._number_literal,
     ),
+
+    op: $ => prec(2, seq('(', $.symbol_id, repeat($._expression), ')')),
 
     identifier: $ => prec.left(seq(
       $.lower_id,
