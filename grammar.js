@@ -3,7 +3,7 @@ module.exports = grammar({
   extras: $ => [
     $.doc_string,
     $.line_comment,
-    /\s+/,
+    /[\s\n\uFEFF\u2060\u200B]/,
   ],
   rules: {
     source_file: $ => seq(
@@ -71,11 +71,7 @@ module.exports = grammar({
 
     type_members: $ => seq(
       '{',
-      optional(seq(
-        $.member_signature,
-        repeat(seq($._line_break, $.member_signature)),
-        optional($._line_break),
-      )),
+      optional(repeat($.member_signature)),
       '}',
     ),
 
@@ -93,6 +89,7 @@ module.exports = grammar({
       optional(seq(
         ':',
         field('return_type', $._expression),
+        token.immediate(/[\n\r]/)
       )),
     ),
 
