@@ -103,8 +103,8 @@ module.exports = grammar({
     ),
 
     val_declaration: $ => choice(
-      $.untyped_val_declaration,
-      $.typed_val_declaration,
+      $._untyped_val_declaration,
+      $._typed_val_declaration,
     ),
 
     _val_parameter: $ => prec.right(4, seq(
@@ -112,7 +112,7 @@ module.exports = grammar({
       optional($._decl_line_break_strict),
     )),
 
-    typed_val_declaration: $ => prec.right(2, seq(
+    _typed_val_declaration: $ => prec.right(2, seq(
       field('name', $._name),
       optional($._decl_line_break_strict),
       field('parameters', repeat($._val_parameter)),
@@ -121,7 +121,7 @@ module.exports = grammar({
       optional(field('value', $.statements)),
     )),
 
-    untyped_val_declaration: $ => prec.right(1, seq(
+    _untyped_val_declaration: $ => prec.right(1, seq(
       field('name', $._name),
       optional($._decl_line_break_strict),
       field('parameters', repeat($._val_parameter)),
@@ -136,8 +136,8 @@ module.exports = grammar({
     )),
 
     pattern: $ => choice(
-      alias($.constructor_identifier, 'name_constructor_pattern'),
-      alias($.identifier, 'identifier_pattern'),
+      $.constructor_identifier,
+      $.identifier,
       $.char,
       $.string,
       $._number_literal,
@@ -187,10 +187,10 @@ module.exports = grammar({
       $.return_expr,
       $.let_expr,
       $.sigma_type,
-      prec(5, $.call),
       prec(4, $.ann_expr),
       prec(3, $.lam_type),
       prec(2, $.lam_expr),
+      prec(1, $.call),
     ),
 
     ann_expr: $ => prec.right(seq(
@@ -221,10 +221,8 @@ module.exports = grammar({
 
     lam_type: $ => prec.right(seq(
       field('parameter', $.lam_type_parameter),
-      repeat(seq(
-        '->',
-        field('return_type', $._expression),
-      )),
+      '->',
+      field('return_type', $._expression),
     )),
 
     array: $ => prec(2, seq(
@@ -239,10 +237,8 @@ module.exports = grammar({
 
     lam_expr: $ => prec.right(seq(
       field('parameter', $.lam_parameter),
-      repeat(seq(
-        '=>',
-        field('return_type', $._expression),
-      )),
+      '=>',
+      field('return_type', $._expression),
     )),
 
     sigma_type: $ => prec.right(seq(

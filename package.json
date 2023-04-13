@@ -26,6 +26,7 @@
         "kind", "kind2"
       ],
       "highlights": [
+        "queries/highlights.scm"
       ],
       "injection-regex": "^(kind|kind2)$"
     }
