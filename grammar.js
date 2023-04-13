@@ -8,7 +8,11 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
       optional($.hash_bang_line),
-      repeat(seq($._declaration, $._line_break)),
+      optional(seq(
+        $._declaration,
+        repeat(seq($._line_break, $._declaration)),
+        optional($._line_break),
+      )),
     ),
 
     _declaration: $ => choice(
