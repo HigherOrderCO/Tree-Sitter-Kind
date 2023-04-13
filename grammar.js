@@ -1,3 +1,5 @@
+// noinspection JSUnusedLocalSymbols
+
 module.exports = grammar({
   name: 'kind',
   extras: $ => [
