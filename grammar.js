@@ -181,8 +181,21 @@ module.exports = grammar({
       )),
     )),
 
+    lam_type_parameter: $ => choice(
+      $.lam_named_type_parameter,
+      $.call,
+    ),
+
+    lam_named_type_parameter: $ => prec.left(4, seq(
+      '(',
+      field('name', $._name),
+      ':',
+      field('type', $._expression),
+      ')',
+    )),
+
     lam_type: $ => prec.right(seq(
-      field('parameter', $.call),
+      field('parameter', $.lam_type_parameter),
       repeat(seq(
         '->',
         field('return_type', $._expression),
@@ -365,14 +378,14 @@ module.exports = grammar({
     hex_number: $ => /[0-8a-fA-F]+/i,
     binary_number: $ => /[0-1]+/i,
     decimal_number: $ => /[0-9]+/i,
-    _float_number: $ => /[\d_]+(\.[\d_]+)?/,
+    _float_number: $ => /\d+(\.[\d_]+)?/,
 
     char: $ => /'[^'\\]'/,
     string: $ => /"([^"\\\n\r]|\\[^\n\r])*"/,
 
     attribute_id: $ => /#[a-zA-Z][a-zA-Z\d_$]*/,
     upper_id: $ => /[A-Z][a-zA-Z\d_$]*/,
-    lower_id: $ => /[a-z][a-zA-Z\d_$]*/,
+    lower_id: $ => /[a-z_][a-zA-Z\d_$]*/,
 
     hash_bang_line: $ => /#!.*/,
 
