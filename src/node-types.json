@@ -1861,6 +1861,10 @@
       "required": false,
       "types": [
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "constructor_pattern",
           "named": true
         },

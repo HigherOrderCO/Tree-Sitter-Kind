@@ -121,6 +121,7 @@ module.exports = grammar({
       alias($.constructor_identifier, 'name_constructor_pattern'),
       alias($.identifier, 'identifier_pattern'),
       alias($.symbol_id, 'symbol_pattern'),
+      $.char,
       $._number_literal,
       $.constructor_pattern,
     ),
