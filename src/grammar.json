@@ -1801,7 +1801,7 @@
             "name": "name",
             "content": {
               "type": "SYMBOL",
-              "name": "_name"
+              "name": "match_pattern"
             }
           },
           {

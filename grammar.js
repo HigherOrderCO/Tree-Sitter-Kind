@@ -340,7 +340,7 @@ module.exports = grammar({
 
     let_expr: $ => prec.right(seq(
       'let',
-      field('name', $._name),
+      field('name', $.match_pattern),
       '=',
       field('value', $._expression),
       optional(seq(

@@ -1444,11 +1444,7 @@
         "required": true,
         "types": [
           {
-            "type": "constructor_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "match_pattern",
             "named": true
           }
         ]
