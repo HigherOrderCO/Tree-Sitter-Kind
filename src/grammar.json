@@ -672,6 +672,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_number_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "constructor_pattern"
         }
       ]
@@ -1308,12 +1312,16 @@
         ]
       }
     },
-    "case": {
+    "rename_pattern": {
       "type": "SEQ",
       "members": [
         {
+          "type": "STRING",
+          "value": "("
+        },
+        {
           "type": "FIELD",
-          "name": "name",
+          "name": "alias",
           "content": {
             "type": "SYMBOL",
             "name": "_name"
@@ -1321,17 +1329,91 @@
         },
         {
           "type": "STRING",
-          "value": "=>"
+          "value": "@"
         },
         {
           "type": "FIELD",
-          "name": "value",
+          "name": "field",
           "content": {
             "type": "SYMBOL",
-            "name": "_expression"
+            "name": "_name"
           }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
+    },
+    "constructor_match_pattern": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "constructor",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_name"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "patterns",
+            "content": {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "match_pattern"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "match_pattern": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "constructor_match_pattern"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rename_pattern"
+        }
+      ]
+    },
+    "case": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "pattern",
+            "content": {
+              "type": "SYMBOL",
+              "name": "match_pattern"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "=>"
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
     },
     "do_expr": {
       "type": "SEQ",
@@ -2167,7 +2249,7 @@
     },
     {
       "type": "PATTERN",
-      "value": "[\\s\\n\\uFEFF\\u2060\\u200B]"
+      "value": "[\\s\\r\\n\\uFEFF\\u2060\\u200B]"
     }
   ],
   "conflicts": [],

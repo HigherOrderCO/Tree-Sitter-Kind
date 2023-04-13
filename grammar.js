@@ -5,7 +5,7 @@ module.exports = grammar({
   extras: $ => [
     $.doc_string,
     $.line_comment,
-    /[\s\n\uFEFF\u2060\u200B]/,
+    /[\s\r\n\uFEFF\u2060\u200B]/,
   ],
   rules: {
     source_file: $ => seq(
@@ -123,6 +123,7 @@ module.exports = grammar({
       alias($.constructor_identifier, 'name_constructor_pattern'),
       alias($.identifier, 'identifier_pattern'),
       alias($.symbol_id, 'symbol_pattern'),
+      $._number_literal,
       $.constructor_pattern,
     ),
 
@@ -243,11 +244,29 @@ module.exports = grammar({
       '}'
     )),
 
-    case: $ => seq(
-      field('name', $._name),
+    rename_pattern: $ => seq(
+      '(',
+      field('alias', $._name),
+      '@',
+      field('field', $._name),
+      ')'
+    ),
+
+    constructor_match_pattern: $ => prec.right(seq(
+      field('constructor', $._name),
+      field('patterns', repeat($.match_pattern)),
+    )),
+
+    match_pattern: $ => choice(
+      $.constructor_match_pattern,
+      $.rename_pattern,
+    ),
+
+    case: $ => prec.right(seq(
+      field('pattern', $.match_pattern),
       '=>',
       field('value', $._expression),
-    ),
+    )),
 
     do_expr: $ => seq(
       'do',

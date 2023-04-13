@@ -359,16 +359,12 @@
     "type": "case",
     "named": true,
     "fields": {
-      "name": {
+      "pattern": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "constructor_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "match_pattern",
             "named": true
           }
         ]
@@ -446,6 +442,36 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "constructor_match_pattern",
+    "named": true,
+    "fields": {
+      "constructor": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "patterns": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "match_pattern",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1394,6 +1420,25 @@
     }
   },
   {
+    "type": "match_pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constructor_match_pattern",
+          "named": true
+        },
+        {
+          "type": "rename_pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "member_signature",
     "named": true,
     "fields": {
@@ -1729,6 +1774,22 @@
         {
           "type": "constructor_pattern",
           "named": true
+        },
+        {
+          "type": "f60_literal",
+          "named": true
+        },
+        {
+          "type": "n_literal",
+          "named": true
+        },
+        {
+          "type": "u120_literal",
+          "named": true
+        },
+        {
+          "type": "u60_literal",
+          "named": true
         }
       ]
     }
@@ -1796,6 +1857,40 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "rename_pattern",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "field": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2411,6 +2506,10 @@
   },
   {
     "type": ">>",
+    "named": false
+  },
+  {
+    "type": "@",
     "named": false
   },
   {
