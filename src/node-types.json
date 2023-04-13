@@ -70,6 +70,65 @@
     }
   },
   {
+    "type": "array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ann_expr",
+          "named": true
+        },
+        {
+          "type": "ask_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "do_expr",
+          "named": true
+        },
+        {
+          "type": "if_expr",
+          "named": true
+        },
+        {
+          "type": "lam_expr",
+          "named": true
+        },
+        {
+          "type": "lam_type",
+          "named": true
+        },
+        {
+          "type": "let_expr",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "open_expr",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "sigma_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ask_expr",
     "named": true,
     "fields": {
@@ -274,6 +333,10 @@
         "required": false,
         "types": [
           {
+            "type": "array",
+            "named": true
+          },
+          {
             "type": "char",
             "named": true
           },
@@ -323,6 +386,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "array",
+            "named": true
+          },
           {
             "type": "char",
             "named": true

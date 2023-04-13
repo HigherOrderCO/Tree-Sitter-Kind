@@ -222,6 +222,16 @@ module.exports = grammar({
       )),
     )),
 
+    array: $ => prec(2, seq(
+      '[',
+      optional(seq(
+        $._expression,
+        repeat(seq(choice(',', $._decl_line_break_strict), $._expression)),
+        optional(choice(',', $._decl_line_break_strict)),
+      )),
+      ']',
+    )),
+
     lam_expr: $ => prec.right(seq(
       field('parameter', $.lam_parameter),
       repeat(seq(
@@ -361,6 +371,7 @@ module.exports = grammar({
     _name: $ => prec(2, choice($.identifier, $.constructor_identifier)),
 
     _primary: $ => choice(
+      $.array,
       $.help,
       $.char,
       $.string,
