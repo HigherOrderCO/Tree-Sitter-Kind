@@ -168,6 +168,7 @@ module.exports = grammar({
       $.return_expr,
       $.let_expr,
       $.if_expr,
+      $.sigma_type,
       prec(4, $.ann_expr),
       prec(3, $.lam_type),
       prec(2, $.lam_expr),
@@ -209,6 +210,16 @@ module.exports = grammar({
         '=>',
         field('return_type', $._expression),
       )),
+    )),
+
+    sigma_type: $ => prec.right(seq(
+      '[',
+      field('name', $._name),
+      ':',
+      field('parameter', $.lam_type_parameter),
+      ']',
+      '->',
+      field('return_type', $._expression),
     )),
 
     lam_parameter: $ => choice(
@@ -329,6 +340,7 @@ module.exports = grammar({
     _name: $ => prec(2, choice($.identifier, $.constructor_identifier)),
 
     _primary: $ => choice(
+      $.help,
       $.char,
       $.string,
       $.op,
@@ -337,6 +349,8 @@ module.exports = grammar({
       $.constructor_identifier,
       $._number_literal,
     ),
+
+    help: $ => prec.right(2, seq('?', optional($._name))),
 
     op: $ => prec(2, seq('(', $.symbol_id, repeat($._expression), ')')),
 
