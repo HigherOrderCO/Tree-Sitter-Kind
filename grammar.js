@@ -102,15 +102,13 @@ module.exports = grammar({
       field('alias', $._name),
     ),
 
-    val_declaration: $ => seq(
+    val_declaration: $ => prec.right(seq(
       field('name', $._name),
       field('parameters', repeat($.parameter)),
-      optional(seq(
-        ':',
-        field('return_type', $._expression),
-      )),
+      ':',
+      field('return_type', $._expression),
       optional(field('value', $.statements)),
-    ),
+    )),
 
     rule_declaration: $ => prec.left(seq(
       field('name', $._name),
