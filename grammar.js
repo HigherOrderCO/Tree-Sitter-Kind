@@ -51,7 +51,7 @@ module.exports = grammar({
         '~',
         field('indices', repeat($.parameter)),
       )),
-      optional(field('members', $.record_members)),
+      field('members', $.record_members),
     ),
 
     type_declaration: $ => seq(
@@ -62,7 +62,7 @@ module.exports = grammar({
         '~',
         field('indices', repeat($.parameter)),
       )),
-      optional(field('members', $.type_members)),
+      field('members', $.type_members),
     ),
 
     record_members: $ => seq(
@@ -77,15 +77,12 @@ module.exports = grammar({
       '}',
     ),
 
-    field_signature: $ => seq(
-      repeat($.attribute),
+    field_signature: $ => prec.right(seq(
       field('name', $._name),
-      optional(seq(
-        ':',
-        field('return_type', $._expression),
-      )),
-      $._decl_line_break,
-    ),
+      ':',
+      field('return_type', $._expression),
+      $._decl_line_break_strict,
+    )),
 
     member_signature: $ => seq(
       repeat($.attribute),
@@ -95,7 +92,7 @@ module.exports = grammar({
         ':',
         field('return_type', $._expression),
       )),
-      $._decl_line_break,
+      $._decl_line_break_strict,
     ),
 
     use_declaration: $ => seq(
@@ -341,7 +338,8 @@ module.exports = grammar({
 
     // LEXER
     _line_break: $ => /(\n|\r\n|;)+/,
-    _decl_line_break: $ => token.immediate(/\s*(\n|\r\n|;)+/),
+    _decl_line_break_strict: $ => /(\n|\r\n|;)+/,
+    _decl_line_break: $ => prec(100, token.immediate(/\s*(\n|\r\n|;)+/)),
     _ws: $ => /\s+/,
 
     symbol_id: $ => choice('$', '+', '-', '*', '/', '%', '^', '&', '|', '&&', '||', '!', '~', '==', '!=', '<', '>', '<=', '>=', '<<', '>>'),

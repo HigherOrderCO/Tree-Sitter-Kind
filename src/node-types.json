@@ -627,7 +627,7 @@
       },
       "return_type": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "ann_expr",
@@ -675,16 +675,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "attribute",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1759,7 +1749,7 @@
       },
       "members": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "record_members",
@@ -2064,7 +2054,7 @@
       },
       "members": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "type_members",
