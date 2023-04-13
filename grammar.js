@@ -138,7 +138,6 @@ module.exports = grammar({
     pattern: $ => choice(
       alias($.constructor_identifier, 'name_constructor_pattern'),
       alias($.identifier, 'identifier_pattern'),
-      alias($.symbol_id, 'symbol_pattern'),
       $.char,
       $.string,
       $._number_literal,
@@ -202,10 +201,15 @@ module.exports = grammar({
       )),
     )),
 
-    lam_type_parameter: $ => choice(
-      $.lam_named_type_parameter,
-      $.call,
-    ),
+    lam_erase_parameter: $ => prec(2, '~'),
+
+    lam_type_parameter: $ => prec.right(seq(
+      optional($.lam_erase_parameter),
+      choice(
+        $.lam_named_type_parameter,
+        $.call,
+      ),
+    )),
 
     lam_named_type_parameter: $ => prec.left(4, seq(
       '(',

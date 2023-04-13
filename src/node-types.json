@@ -1188,6 +1188,11 @@
     }
   },
   {
+    "type": "lam_erase_parameter",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "lam_expr",
     "named": true,
     "fields": {
@@ -1429,11 +1434,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "call",
+          "named": true
+        },
+        {
+          "type": "lam_erase_parameter",
           "named": true
         },
         {
@@ -2585,11 +2594,6 @@
   {
     "type": "symbol_id",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "symbol_pattern",
-    "named": false,
     "fields": {}
   },
   {

@@ -759,15 +759,6 @@
           "value": "identifier_pattern"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "symbol_id"
-          },
-          "named": false,
-          "value": "symbol_pattern"
-        },
-        {
           "type": "SYMBOL",
           "name": "char"
         },
@@ -1094,18 +1085,47 @@
         ]
       }
     },
+    "lam_erase_parameter": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "STRING",
+        "value": "~"
+      }
+    },
     "lam_type_parameter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "lam_named_type_parameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "call"
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "lam_erase_parameter"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "lam_named_type_parameter"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "call"
+              }
+            ]
+          }
+        ]
+      }
     },
     "lam_named_type_parameter": {
       "type": "PREC_LEFT",
