@@ -109,12 +109,12 @@ module.exports = grammar({
       optional(field('value', $.statements)),
     ),
 
-    rule_declaration: $ => seq(
+    rule_declaration: $ => prec.left(seq(
       field('name', $._name),
       field('patterns', repeat($.pattern)),
       '=',
       field('value', $._expression),
-    ),
+    )),
 
     pattern: $ => choice(
       alias($.constructor_identifier, 'name_constructor_pattern'),
@@ -147,7 +147,7 @@ module.exports = grammar({
       prec(5, '>'),
     )),
 
-    explicit_parameter: $ => seq(
+    explicit_parameter: $ => prec(2, seq(
       '(',
       field('name', $._name),
       optional(seq(
@@ -155,7 +155,7 @@ module.exports = grammar({
         field('type', $._expression),
       )),
       ')',
-    ),
+    )),
 
     _expression: $ => choice(
       $.match_expr,
@@ -171,22 +171,28 @@ module.exports = grammar({
       prec(1, $.call),
     ),
 
-    ann_expr: $ => prec.left(seq(
-      field('value', $._expression),
-      '::',
-      field('type', $._expression),
+    ann_expr: $ => prec.right(seq(
+      field('value', $.call),
+      repeat(seq(
+        '::',
+        field('type', $._expression),
+      )),
     )),
 
-    lam_type: $ => prec.left(seq(
-      field('parameter', $._expression),
-      '->',
-      field('return_type', $._expression),
+    lam_type: $ => prec.right(seq(
+      field('parameter', $.call),
+      repeat(seq(
+        '->',
+        field('return_type', $._expression),
+      )),
     )),
 
-    lam_expr: $ => prec.left(seq(
+    lam_expr: $ => prec.right(seq(
       field('parameter', $.lam_parameter),
-      '=>',
-      field('return_type', $._expression),
+      repeat(seq(
+        '=>',
+        field('return_type', $._expression),
+      )),
     )),
 
     lam_parameter: $ => choice(
@@ -194,9 +200,9 @@ module.exports = grammar({
       $.explicit_parameter,
     ),
 
-    return_expr: $ => prec.left(seq('return', field('value', $._expression))),
+    return_expr: $ => prec.right(seq('return', field('value', $._expression))),
 
-    statements: $ => prec.left(seq(
+    statements: $ => prec.right(seq(
       '{',
       optional(seq(
         $._expression,
@@ -206,14 +212,14 @@ module.exports = grammar({
       '}'
     )),
 
-    ask_expr: $ => prec.left(seq(
+    ask_expr: $ => prec.right(seq(
       'ask',
       field('name', $._name),
       '=',
       field('value', $._expression),
     )),
 
-    match_expr: $ => prec.left(seq(
+    match_expr: $ => prec.right(seq(
       'match',
       field('scrutinee', $._name),
       field('name', $._name),
@@ -224,7 +230,7 @@ module.exports = grammar({
       field('branches', $.branches),
     )),
 
-    branches: $ => prec.left(seq(
+    branches: $ => prec.right(seq(
       '{',
       optional(seq(
         $.case,
@@ -246,7 +252,7 @@ module.exports = grammar({
       field('statements', $.statements),
     ),
 
-    open_expr: $ => prec.left(seq(
+    open_expr: $ => prec.right(seq(
       'open',
       field('name', $.constructor_identifier),
       field('value', $.identifier),
@@ -256,7 +262,7 @@ module.exports = grammar({
       )),
     )),
 
-    let_expr: $ => prec.left(seq(
+    let_expr: $ => prec.right(seq(
       'let',
       field('name', $._name),
       '=',
@@ -279,7 +285,7 @@ module.exports = grammar({
       '}',
     ),
 
-    call: $ => prec.right(seq(
+    call: $ => prec.left(seq(
       field('callee', $._primary),
       field('arguments', repeat($._primary)),
     )),
@@ -300,11 +306,11 @@ module.exports = grammar({
 
     op: $ => prec(2, seq('(', $.symbol_id, repeat($._expression), ')')),
 
-    identifier: $ => prec.left(seq(
+    identifier: $ => prec.right(seq(
       $.lower_id,
       repeat(choice($.dot_access, $.bar_access)),
     )),
-    constructor_identifier: $ => prec.left(seq(
+    constructor_identifier: $ => prec.right(seq(
       $.upper_id,
       repeat(choice($.dot_access, $.bar_access)),
     )),

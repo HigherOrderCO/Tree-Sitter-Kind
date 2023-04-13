@@ -4,8 +4,8 @@
     "named": true,
     "fields": {
       "type": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "ann_expr",
@@ -58,47 +58,7 @@
         "required": true,
         "types": [
           {
-            "type": "ann_expr",
-            "named": true
-          },
-          {
-            "type": "ask_expr",
-            "named": true
-          },
-          {
             "type": "call",
-            "named": true
-          },
-          {
-            "type": "do_expr",
-            "named": true
-          },
-          {
-            "type": "if_expr",
-            "named": true
-          },
-          {
-            "type": "lam_expr",
-            "named": true
-          },
-          {
-            "type": "lam_type",
-            "named": true
-          },
-          {
-            "type": "let_expr",
-            "named": true
-          },
-          {
-            "type": "match_expr",
-            "named": true
-          },
-          {
-            "type": "open_expr",
-            "named": true
-          },
-          {
-            "type": "return_expr",
             "named": true
           }
         ]
@@ -1084,8 +1044,8 @@
         ]
       },
       "return_type": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "ann_expr",
@@ -1167,54 +1127,14 @@
         "required": true,
         "types": [
           {
-            "type": "ann_expr",
-            "named": true
-          },
-          {
-            "type": "ask_expr",
-            "named": true
-          },
-          {
             "type": "call",
-            "named": true
-          },
-          {
-            "type": "do_expr",
-            "named": true
-          },
-          {
-            "type": "if_expr",
-            "named": true
-          },
-          {
-            "type": "lam_expr",
-            "named": true
-          },
-          {
-            "type": "lam_type",
-            "named": true
-          },
-          {
-            "type": "let_expr",
-            "named": true
-          },
-          {
-            "type": "match_expr",
-            "named": true
-          },
-          {
-            "type": "open_expr",
-            "named": true
-          },
-          {
-            "type": "return_expr",
             "named": true
           }
         ]
       },
       "return_type": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "ann_expr",
