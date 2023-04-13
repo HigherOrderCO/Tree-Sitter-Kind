@@ -185,7 +185,6 @@ module.exports = grammar({
       $.open_expr,
       $.return_expr,
       $.let_expr,
-      $.if_expr,
       $.sigma_type,
       prec(4, $.ann_expr),
       prec(3, $.lam_type),
@@ -371,6 +370,7 @@ module.exports = grammar({
     _name: $ => prec(2, choice($.identifier, $.constructor_identifier)),
 
     _primary: $ => choice(
+      $.if_expr,
       $.array,
       $.help,
       $.char,

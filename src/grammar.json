@@ -1013,10 +1013,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "if_expr"
-        },
-        {
-          "type": "SYMBOL",
           "name": "sigma_type"
         },
         {
@@ -1966,6 +1962,10 @@
     "_primary": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if_expr"
+        },
         {
           "type": "SYMBOL",
           "name": "array"
