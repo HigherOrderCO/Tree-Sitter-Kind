@@ -102,11 +102,29 @@ module.exports = grammar({
       field('alias', $._name),
     ),
 
-    val_declaration: $ => prec.right(seq(
+    val_declaration: $ => choice(
+      $.untyped_val_declaration,
+      $.typed_val_declaration,
+    ),
+
+    _val_parameter: $ => prec.right(4, seq(
+      $.parameter,
+      optional($._decl_line_break_strict),
+    )),
+
+    typed_val_declaration: $ => prec.right(2, seq(
       field('name', $._name),
-      field('parameters', repeat($.parameter)),
+      optional($._decl_line_break_strict),
+      field('parameters', repeat($._val_parameter)),
       ':',
       field('return_type', $._expression),
+      optional(field('value', $.statements)),
+    )),
+
+    untyped_val_declaration: $ => prec.right(1, seq(
+      field('name', $._name),
+      optional($._decl_line_break_strict),
+      field('parameters', repeat($._val_parameter)),
       optional(field('value', $.statements)),
     )),
 
