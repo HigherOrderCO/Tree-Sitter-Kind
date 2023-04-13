@@ -327,9 +327,9 @@ module.exports = grammar({
     u120_literal: $ => prec(2, seq($._integer_literal, optional('u120'))),
     n_literal: $ => prec(1, seq($._integer_literal, optional('n'))),
 
-    octal: $ => seq('0', choice('O', 'o'), $.octal_number),
-    hex: $ => seq('0', choice('X', 'x'), $.hex_number),
-    binary: $ => seq('0', choice('B', 'b'), $.binary_number),
+    octal: $ => seq(choice('0O', '0o'), $.octal_number),
+    hex: $ => seq(choice('0x', '0x'), $.hex_number),
+    binary: $ => seq(choice('0B', '0b'), $.binary_number),
 
     dot_access: $ => seq('.', $._any_id),
     bar_access: $ => seq('/', $._any_id),
