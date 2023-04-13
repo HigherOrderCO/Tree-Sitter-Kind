@@ -773,6 +773,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_number_literal"
         },
         {

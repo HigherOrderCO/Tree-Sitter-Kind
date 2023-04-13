@@ -1975,6 +1975,10 @@
           "named": true
         },
         {
+          "type": "string",
+          "named": true
+        },
+        {
           "type": "u120_literal",
           "named": true
         },
