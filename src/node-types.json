@@ -1614,6 +1614,10 @@
         {
           "type": "rename_pattern",
           "named": true
+        },
+        {
+          "type": "rest_pattern",
+          "named": true
         }
       ]
     }
@@ -2958,6 +2962,10 @@
   {
     "type": "record",
     "named": false
+  },
+  {
+    "type": "rest_pattern",
+    "named": true
   },
   {
     "type": "return",

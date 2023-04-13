@@ -298,7 +298,10 @@ module.exports = grammar({
       field('patterns', repeat($.match_pattern)),
     )),
 
+    rest_pattern: $ => '..',
+
     match_pattern: $ => choice(
+      $.rest_pattern,
       $.constructor_match_pattern,
       $.rename_pattern,
     ),
