@@ -168,7 +168,7 @@ module.exports = grammar({
       prec(5, '>'),
     )),
 
-    explicit_parameter: $ => prec(2, seq(
+    explicit_parameter: $ => prec.left(2, seq(
       '(',
       field('name', $._name),
       optional(seq(
@@ -187,10 +187,10 @@ module.exports = grammar({
       $.return_expr,
       $.let_expr,
       $.sigma_type,
+      prec(5, $.call),
       prec(4, $.ann_expr),
       prec(3, $.lam_type),
       prec(2, $.lam_expr),
-      prec(1, $.call),
     ),
 
     ann_expr: $ => prec.right(seq(
@@ -211,7 +211,7 @@ module.exports = grammar({
       ),
     )),
 
-    lam_named_type_parameter: $ => prec.left(4, seq(
+    lam_named_type_parameter: $ => prec.right(4, seq(
       '(',
       field('name', $._name),
       ':',
@@ -396,7 +396,7 @@ module.exports = grammar({
       field('value', $._expression),
     )),
 
-    call: $ => prec.left(seq(
+    call: $ => prec.right(seq(
       field('callee', $._primary),
       field('arguments', repeat($._primary)),
     )),
@@ -413,14 +413,15 @@ module.exports = grammar({
       $.string,
       $.op,
       $.group,
-      $.identifier,
-      $.constructor_identifier,
+      $._primary_identifier,
       $._number_literal,
     ),
 
     help: $ => prec.right(2, seq('?', optional($._name))),
 
     op: $ => prec(2, seq('(', $.symbol_id, repeat($._expression), ')')),
+
+    _primary_identifier: $ => prec(5, choice($.identifier, $.constructor_identifier)),
 
     identifier: $ => prec.right(seq(
       optional($.synthetic),

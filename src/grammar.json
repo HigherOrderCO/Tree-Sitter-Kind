@@ -930,7 +930,7 @@
       }
     },
     "explicit_parameter": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": 2,
       "content": {
         "type": "SEQ",
@@ -1016,6 +1016,14 @@
         },
         {
           "type": "PREC",
+          "value": 5,
+          "content": {
+            "type": "SYMBOL",
+            "name": "call"
+          }
+        },
+        {
+          "type": "PREC",
           "value": 4,
           "content": {
             "type": "SYMBOL",
@@ -1036,14 +1044,6 @@
           "content": {
             "type": "SYMBOL",
             "name": "lam_expr"
-          }
-        },
-        {
-          "type": "PREC",
-          "value": 1,
-          "content": {
-            "type": "SYMBOL",
-            "name": "call"
           }
         }
       ]
@@ -1128,7 +1128,7 @@
       }
     },
     "lam_named_type_parameter": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": 4,
       "content": {
         "type": "SEQ",
@@ -2084,7 +2084,7 @@
       }
     },
     "call": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -2182,11 +2182,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "constructor_identifier"
+          "name": "_primary_identifier"
         },
         {
           "type": "SYMBOL",
@@ -2243,6 +2239,23 @@
           {
             "type": "STRING",
             "value": ")"
+          }
+        ]
+      }
+    },
+    "_primary_identifier": {
+      "type": "PREC",
+      "value": 5,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "constructor_identifier"
           }
         ]
       }
