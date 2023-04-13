@@ -2440,7 +2440,51 @@
         "required": true,
         "types": [
           {
-            "type": "lam_type_parameter",
+            "type": "ann_expr",
+            "named": true
+          },
+          {
+            "type": "ask_expr",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "do_expr",
+            "named": true
+          },
+          {
+            "type": "lam_expr",
+            "named": true
+          },
+          {
+            "type": "lam_type",
+            "named": true
+          },
+          {
+            "type": "let_expr",
+            "named": true
+          },
+          {
+            "type": "match_expr",
+            "named": true
+          },
+          {
+            "type": "open_expr",
+            "named": true
+          },
+          {
+            "type": "return_expr",
+            "named": true
+          },
+          {
+            "type": "sigma_type",
+            "named": true
+          },
+          {
+            "type": "specialize_expr",
             "named": true
           }
         ]

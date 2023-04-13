@@ -249,7 +249,7 @@ module.exports = grammar({
       '[',
       field('name', $._name),
       ':',
-      field('parameter', $.lam_type_parameter),
+      field('parameter', $._expression),
       ']',
       '->',
       field('return_type', $._expression),

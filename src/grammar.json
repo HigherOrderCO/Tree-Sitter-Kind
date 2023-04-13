@@ -1345,7 +1345,7 @@
             "name": "parameter",
             "content": {
               "type": "SYMBOL",
-              "name": "lam_type_parameter"
+              "name": "_expression"
             }
           },
           {
