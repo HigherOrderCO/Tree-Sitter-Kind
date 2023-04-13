@@ -287,8 +287,29 @@ module.exports = grammar({
         '=',
         field('value', $._expression),
       )),
+      repeat($.with),
       field('branches', $.branches),
+      optional(field('motive', $.motive)),
     )),
+
+    motive: $ => seq(':', field('type', $._expression)),
+
+    with: $ => seq(
+      'with',
+      choice($.with_unnamed_parameter, $.with_named_parameter),
+    ),
+
+    with_unnamed_parameter: $ => seq(
+      field('name', $._name)
+    ),
+
+    with_named_parameter: $ => seq(
+      '(',
+      field('name', $._name),
+      ':',
+      field('type', $._expression),
+      ')'
+    ),
 
     branches: $ => prec.right(seq(
       '{',
@@ -402,13 +423,17 @@ module.exports = grammar({
     op: $ => prec(2, seq('(', $.symbol_id, repeat($._expression), ')')),
 
     identifier: $ => prec.right(seq(
+      optional($.synthetic),
       $.lower_id,
       repeat(choice($.dot_access, $.bar_access)),
     )),
     constructor_identifier: $ => prec.right(seq(
+      optional($.synthetic),
       $.upper_id,
       repeat(choice($.dot_access, $.bar_access)),
     )),
+
+    synthetic: $ => prec(2, '%'),
 
     _number_literal: $ => choice($.f60_literal, $.u60_literal, $.u120_literal, $.n_literal),
 
