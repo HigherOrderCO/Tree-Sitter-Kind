@@ -180,6 +180,7 @@ module.exports = grammar({
     )),
 
     _expression: $ => choice(
+      $.specialize_expr,
       $.match_expr,
       $.do_expr,
       $.ask_expr,
@@ -360,6 +361,15 @@ module.exports = grammar({
       field('else_branch', $._expression),
       '}',
     ),
+
+    specialize_expr: $ => prec.right(seq(
+      'specialize',
+      field('name', $._name),
+      'into',
+      field('number', seq('#', $.decimal_number)),
+      'in',
+      field('value', $._expression),
+    )),
 
     call: $ => prec.left(seq(
       field('callee', $._primary),

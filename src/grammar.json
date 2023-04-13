@@ -993,6 +993,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "specialize_expr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "match_expr"
         },
         {
@@ -1896,6 +1900,60 @@
           "value": "}"
         }
       ]
+    },
+    "specialize_expr": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "specialize"
+          },
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_name"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "into"
+          },
+          {
+            "type": "FIELD",
+            "name": "number",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "#"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "decimal_number"
+                }
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "in"
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
     },
     "call": {
       "type": "PREC_LEFT",
