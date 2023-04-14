@@ -128,11 +128,13 @@ module.exports = grammar({
       optional(field('value', $.statements)),
     )),
 
+    rule_value: $ => $._expression,
+
     rule_declaration: $ => prec.left(seq(
       field('name', $._name),
       field('patterns', repeat($.pattern)),
       '=',
-      field('value', $._expression),
+      field('value', $.rule_value),
     )),
 
     pattern: $ => choice(
@@ -270,7 +272,7 @@ module.exports = grammar({
 
     ask_expr: $ => prec.right(seq(
       'ask',
-      field('name', $._name),
+      field('name', $.local_name),
       '=',
       field('value', $._expression),
     )),
@@ -278,7 +280,7 @@ module.exports = grammar({
     match_expr: $ => prec.right(seq(
       'match',
       field('scrutinee', $._name),
-      field('name', $._name),
+      field('name', $.local_name),
       optional(seq(
         '=',
         field('value', $._expression),
@@ -319,7 +321,7 @@ module.exports = grammar({
 
     rename_pattern: $ => seq(
       '(',
-      field('alias', $._name),
+      field('alias', $.local_name),
       '@',
       field('field', $._name),
       ')'
@@ -350,10 +352,12 @@ module.exports = grammar({
       field('statements', $.statements),
     ),
 
+    local_name: $ => $._name,
+
     open_expr: $ => prec.right(seq(
       'open',
       field('name', $.constructor_identifier),
-      field('value', $.identifier),
+      field('value', $.local_name),
       optional(seq(
         $._line_break,
         field('next', $._expression),

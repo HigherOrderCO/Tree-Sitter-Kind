@@ -137,11 +137,7 @@
         "required": true,
         "types": [
           {
-            "type": "constructor_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "local_name",
             "named": true
           }
         ]
@@ -1567,6 +1563,25 @@
     "fields": {}
   },
   {
+    "type": "local_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constructor_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "match_expr",
     "named": true,
     "fields": {
@@ -1595,11 +1610,7 @@
         "required": true,
         "types": [
           {
-            "type": "constructor_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "local_name",
             "named": true
           }
         ]
@@ -2039,7 +2050,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "local_name",
             "named": true
           }
         ]
@@ -2202,11 +2213,7 @@
         "required": true,
         "types": [
           {
-            "type": "constructor_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "local_name",
             "named": true
           }
         ]
@@ -2320,55 +2327,70 @@
         "required": true,
         "types": [
           {
-            "type": "ann_expr",
-            "named": true
-          },
-          {
-            "type": "ask_expr",
-            "named": true
-          },
-          {
-            "type": "call",
-            "named": true
-          },
-          {
-            "type": "do_expr",
-            "named": true
-          },
-          {
-            "type": "lam_expr",
-            "named": true
-          },
-          {
-            "type": "lam_type",
-            "named": true
-          },
-          {
-            "type": "let_expr",
-            "named": true
-          },
-          {
-            "type": "match_expr",
-            "named": true
-          },
-          {
-            "type": "open_expr",
-            "named": true
-          },
-          {
-            "type": "return_expr",
-            "named": true
-          },
-          {
-            "type": "sigma_type",
-            "named": true
-          },
-          {
-            "type": "specialize_expr",
+            "type": "rule_value",
             "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "rule_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ann_expr",
+          "named": true
+        },
+        {
+          "type": "ask_expr",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "do_expr",
+          "named": true
+        },
+        {
+          "type": "lam_expr",
+          "named": true
+        },
+        {
+          "type": "lam_type",
+          "named": true
+        },
+        {
+          "type": "let_expr",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "open_expr",
+          "named": true
+        },
+        {
+          "type": "return_expr",
+          "named": true
+        },
+        {
+          "type": "sigma_type",
+          "named": true
+        },
+        {
+          "type": "specialize_expr",
+          "named": true
+        }
+      ]
     }
   },
   {
