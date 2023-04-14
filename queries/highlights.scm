@@ -108,8 +108,7 @@
   (#match? @type.builtin "^(Type|Bool|Pair|Sigma|U60|U120|F60|String)$"))
 
 ((upper_id) @variable.builtin
-  (#match? @variable.builtin "^(Type|Bool|Pair|Sigma|U60|U120|F60|String)$")
-  (#is-not? local))
+  (#match? @variable.builtin "^(Type|Bool|Pair|Sigma|U60|U120|F60|String)$"))
 
 (upper_id) @function.method
 
