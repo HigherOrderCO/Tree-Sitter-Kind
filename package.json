@@ -5,7 +5,6 @@
   "repository": "https://github.com/aripiprazole/tree-sitter-kind",
   "author": "Gabrielle Guimarães de Oliveira",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "tree-sitter-cli": "^0.20.8"
   },
